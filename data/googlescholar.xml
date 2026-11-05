@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<googlescholar>
+	<researchers>
+		<researcher id="i001">
+			<name>Nuno Laranjeiro</name>
+			<university>Universidade de Coimbra</university>
+		    <interest>Computer Engineering</interest>
+			<interest>Cloud Computing</interest>
+			<interest>Software Security</interest>
+			<homepage>https://eden.dei.uc.pt/~cnl/</homepage>
+			<email>cnl@dei.uc.pt</email>
+		</researcher>
+		<researcher id="i002">
+			<name>Bruno Jesus</name>
+			<university>Federal University of Alagoas</university>
+			<interest>Communication Protocol</interest>
+			<interest>Internet Of Things</interest>
+			<interest>Software Security</interest>
+			<email>bf@ic.ufal.br</email>
+		</researcher>
+		<researcher id="i003">
+			<name>Fernando Aires</name>
+			<university>Federal Rural University of Pernambuco</university>
+			<interest>Internet Of Things</interest>
+			<interest>Application Layer</interest>
+			<interest>CPU Usage</interest>
+			<email>fa@ufrpe.br</email>
+		</researcher>
+		<researcher id="i004">
+			<name>Fernando Richter Vidal</name>
+			<university>Universidade de Coimbra</university>
+			<interest>Blockchain</interest>
+			<interest>Database</interest>
+			<interest>Machine Learning</interest>
+			<homepage>https://www.researchgate.net/profile/Fernando-Richter-Vidal</homepage>
+		</researcher>
+		<researcher id="i005">
+			<name>Naghmeh Ivaki</name>
+			<university>Universidade de Coimbra</university>
+			<interest>Safety Assessment</interest>
+			<interest>Cybersecurity</interest>
+			<interest>Software Security</interest>
+			<homepage>https://eden.dei.uc.pt/~naghmeh/#contact</homepage>
+			<email>naghmeh@dei.uc.pt</email>
+		</researcher>
+		<researcher id="i006">
+			<name>Rui André Oliveira</name>
+			<university>NOVA LINCS</university>
+			<university>Universidade de Évora</university>
+			<interest>Security Testing</interest>
+			<interest>Dependability Benchmarking</interest>
+			<interest>Fault Injection</interest>
+			<email>rui@uevora.pt</email>
+		</researcher>
+		<researcher id="i007">
+			<name>Marco Vieira</name>
+			<university>University of North Carolina at Charlotte</university>
+			<university>Universidade de Coimbra</university>
+			<interest>Dependable Computing</interest>
+			<interest>Software Reliability</interest>
+			<interest>Benchmarking</interest>
+			<homepage>https://marcovieira.me/</homepage>
+			<email>marco@uncc.edu</email>
+		</researcher>
+		<researcher id="i008">
+			<name>Miquel Martínez Raga</name>
+			<university>Universitat Politècnica de València</university>
+			<interest>Dependability Benchmarking</interest>
+			<interest>ad hoc networks</interest>
+			<interest>wireless networks</interest>
+			<email>miguel@disca.upv.es</email>
+		</researcher>
+		<researcher id="i009">
+			<name>Rogério de Lemos</name>
+			<university>University of Kent</university>
+			<interest>software engineering</interest>
+			<interest>dependability</interest>
+			<interest>software architectures</interest>
+			<homepage>https://www.cs.kent.ac.uk/people/staff/rdl/</homepage>
+			<email>rogerio@kent.ac.uk</email>
+		</researcher>
+		<researcher id="i010">
+			<name>Jesper Andersson</name>
+			<university>Linnaeus University</university>
+			<interest>software engineering</interest>
+			<interest>Software Reuse</interest>
+			<interest>software architectures</interest>
+			<email>jesper@nu.se</email>
+		</researcher>
+		<researcher id="i011">
+			<name>Sam Malek</name>
+			<university>University of California</university>
+			<interest>software engineering</interest>
+			<interest>Mobile Computing</interest>
+			<interest>software architectures</interest>
+			<homepage>https://ics.uci.edu/~malek/</homepage>
+			<email>sam@uci.edu</email>
+		</researcher>
+		<researcher id="i012">
+			<name>Danny Weyns</name>
+			<university>Linnaeus University Sweden</university>
+			<interest>software engineering</interest>
+			<interest>empirical and formal methods</interest>
+			<interest>software architectures</interest>
+			<homepage>https://people.cs.kuleuven.be/~danny.weyns/</homepage>
+			<email>danny@lnu.se</email>
+		</researcher>
+		<researcher id="i013">
+			<name>Edmundo Sérgio</name>
+			<university>Universidade de Coimbra</university>
+			<interest>computation solid mechanics</interest>
+			<interest>fracture mechanics</interest>
+			<interest>contact mechanics</interest>
+			<homepage>https://orcid.org/0000-0001-6256-2509</homepage>
+			<email>edmundo.sergio@uc.pt</email>
+		</researcher>
+		<researcher id="i014">
+			<name>Fernando Antunes</name>
+			<university>Universidade de Coimbra</university>
+			<interest>computation solid mechanics</interest>
+			<interest>fracture mechanics</interest>
+			<interest>contact mechanics</interest>
+			<email>fernando@dem.uc.pt</email>
+		</researcher>
+	    <researcher id="i015">
+			<name>Daniel Kujawski</name>
+			<university>Western Michigan University</university>
+			<interest>fatigue</interest>
+			<interest>fracture mechanics</interest>
+			<email>daniel@wmich.edu</email>
+		</researcher>
+		<researcher id="i016">
+			<name>Diogo Neto</name>
+			<university>Universidade de Coimbra</university>
+			<interest>Computational Mechanics</interest>
+			<interest>Additive Manufacturing</interest>
+			<homepage>https://diogoneto.weebly.com/</homepage>
+			<email>diogo@dem.uc.pt</email>
+		</researcher>
+		<researcher id="i017">
+			<name>Cesar Teixeira</name>
+			<university>Universidade de Coimbra</university>
+			<interest>Biomedical Signal Processing</interest>
+			<interest>Epileptic Seizure Prediction</interest>
+			<homepage>https://eden.dei.uc.pt/~cteixei/Cesar_Teixeira/Cesar_Teixeiras_Homepage.html</homepage>
+			<email>cteixei@dei.uc.pt</email>
+		</researcher>
+		<researcher id="i018">
+			<name>Mojtaba Bandarabadi</name>
+			<university>University of Lausanne</university>
+			<interest>Neuroscience</interest>
+			<interest>Data Science</interest>
+			<interest>Machine Learning</interest>
+            <email>mojtaba@unil.ch</email>
+		</researcher>
+		<researcher id="i019">
+			<name>Antonio Dourado</name>
+			<university>Universidade de Coimbra</university>
+			<interest>Biomedical Engineering</interest>
+			<interest>Computational Intelligence</interest>
+			<interest>Machine Learning</interest>
+            <homepage>https://eden.dei.uc.pt/~dourado/</homepage>
+			<email>dourado@dei.uc.pt</email>
+		</researcher>
+		<researcher id="i020">
+			<name>Jalil Rasekhi</name>
+			<university>University of Mazandaran</university>
+			<interest>Freelance Researcher</interest>
+           <email>jalil@ece.ut.ac.ir</email>
+		</researcher>		
+		<researcher id="i021">
+			<name>Jorge Bernardino</name>
+			<university>Universidade Politécnica de Coimbra</university>
+			<interest>Databases</interest>
+			<interest>Software Engineering</interest>
+           <email>jorge@isec.pt</email>
+		</researcher>
+		
+	</researchers>
+	
+	<papers>
+		<paper>		
+			<title>Testing the Robustness of IoT Messaging Middleware: A Case Study Using Rules and Large Language Models</title>
+			<year>2026</year>
+			<publisher>IEEE</publisher>
+			<citations>0</citations>
+			<doi>10.1109/ACCESS.2026.3731446</doi>
+			<author ref="i001"/>
+			<author ref="i002"/>
+			<author ref="i003"/>
+		</paper>
+		<paper>		
+			<title>bBench: A Comprehensive Performance Benchmark for Blockchain Applications</title>
+			<year>2025</year>
+			<publisher>IEEE</publisher>
+			<citations>0</citations>
+			<doi>10.1109/ISSRE66568.2025.00046</doi>
+			<author ref="i004"/>
+			<author ref="i005"/>
+			<author ref="i001"/>
+		</paper>
+		<paper>		
+			<title>Vulnerability detection techniques for smart contracts: A systematic literature review</title>
+			<year>2024</year>
+			<publisher>Elsevier</publisher>
+			<citations>60</citations>
+			<doi>10.1016/j.jss.2024.112160</doi>
+			<author ref="i004"/>
+			<author ref="i005"/>
+			<author ref="i001"/>
+		</paper>
+		<paper>		
+			<title>An approach for benchmarking the security of web service frameworks</title>
+			<year>2020</year>
+			<publisher>Elsevier</publisher>
+			<citations>31</citations>
+			<doi>10.1016/j.future.2019.10.027</doi>
+			<author ref="i001"/>
+			<author ref="i006"/>
+			<author ref="i007"/>
+	        <author ref="i008"/>
+		</paper>
+		<paper>		
+			<title>Reflecting on self-adaptive software systems</title>
+			<year>2009</year>
+			<publisher>IEEE</publisher>
+			<citations>108</citations>
+			<doi>10.1109/SEAMS.2009.5069072</doi>
+			<author ref="i009"/>
+			<author ref="i010"/>
+			<author ref="i011"/>
+	        <author ref="i012"/>
+		</paper>
+		<paper>	
+		<title>Fatigue crack growth: Validation of the Kmax-ΔK approach using the GTN damage model</title>
+			<year>2023</year>
+			<publisher>Elsevier</publisher>
+			<citations>16</citations>
+			<doi>10.1016/j.ijfatigue.2023.107888</doi>
+			<author ref="i013"/>
+			<author ref="i014"/>
+			<author ref="i015"/>
+			<author ref="i016"/>
+		</paper>
+		<paper>	
+		<title>Epileptic seizure prediction using relative spectral power features</title>
+			<year>2015</year>
+			<publisher>Elsevier</publisher>
+			<citations>357</citations>
+			<doi>10.1016/j.clinph.2014.05.022</doi>
+			<author ref="i017"/>
+			<author ref="i018"/>
+			<author ref="i019"/>
+			<author ref="i020"/>
+		</paper>
+		<paper>	
+		<title>Preprocessing effects of 22 linear univariate features on the performance of seizure prediction methods</title>
+			<year>2015</year>
+			<publisher>Elsevier</publisher>
+			<citations>176</citations>
+			<doi>10.1016/j.jneumeth.2013.03.019</doi>
+			<author ref="i017"/>
+			<author ref="i018"/>
+			<author ref="i019"/>
+			<author ref="i020"/>
+		</paper>
+		<paper>	
+		<title>A survey on data quality: classifying poor data</title>
+			<year>2015</year>
+			<publisher>IEEE</publisher>
+			<citations>272</citations>
+			<doi>10.1109/PRDC.2015.41</doi>
+			<author ref="i001"/>
+			<author ref="i021"/>
+		</paper>
+		<paper>	
+		<title>An analysis of public REST web service APIs</title>
+			<year>2021</year>
+			<publisher>IEEE</publisher>
+			<citations>324</citations>
+			<doi>10.1109/TSC.2018.2847344</doi>
+			<author ref="i001"/>
+			<author ref="i021"/>
+		</paper>
+		<paper>	
+		<title>A black box tool for robustness testing of REST services</title>
+			<year>2021</year>
+			<publisher>IEEE</publisher>
+			<citations>103</citations>
+			<doi>10.1109/ACCESS.2021.3056505</doi>
+			<author ref="i001"/>
+			<author ref="i021"/>
+		</paper>
+		<paper>	
+		<title>OpenSCV: an open hierarchical taxonomy for smart contract vulnerabilities</title>
+			<year>2024</year>
+			<publisher>IEEE</publisher>
+			<citations>63</citations>
+			<doi>10.1007/s10664-024-10446-8</doi>
+			<author ref="i001"/>
+			<author ref="i004"/>
+			<author ref="i005"/>
+		</paper>
+		<paper>	
+		<title>Towards fault tolerance in web services compositions</title>
+			<year>2007</year>
+			<publisher>ACM</publisher>
+			<citations>50</citations>
+			<doi>10.1145/1316550.131655</doi>
+			<author ref="i001"/>
+			<author ref="i007"/>
+		</paper>
+		<paper>
+			<title>Experimental Evaluation of Web Service Frameworks in the Presence of Security Attacks</title>
+			<year>2012</year>
+			<publisher>IEEE</publisher>
+			<citations>0</citations>
+			<doi>10.1109/scc.2012.52</doi>
+			<author ref="i006"/>
+			<author ref="i001"/>
+			<author ref="i007"/>
+		</paper>
+		<paper>
+			<title>Characterizing the performance of web service frameworks under security attacks</title>
+			<year>2015</year>
+			<publisher>ACM</publisher>
+			<citations>0</citations>
+			<doi>10.1145/2695664.2695927</doi>
+			<author ref="i006"/>
+			<author ref="i001"/>
+			<author ref="i007"/>
+		</paper>
+		<paper>
+			<title>On the proper selection of preictal period for seizure prediction</title>
+			<year>2015</year>
+			<publisher>Elsevier</publisher>
+			<citations>0</citations>
+			<doi>10.1016/j.yebeh.2015.03.010</doi>
+			<author ref="i018"/>
+			<author ref="i020"/>
+			<author ref="i017"/>
+			<author ref="i019"/>
+		</paper>
+		<paper>
+			<title>Software Engineering for Self-Adaptive Systems: A Second Research Roadmap</title>
+			<year>2013</year>
+			<publisher>Springer</publisher>
+			<citations>0</citations>
+			<doi>10.1007/978-3-642-35813-5_1</doi>
+			<author ref="i009"/>
+			<author ref="i011"/>
+			<author ref="i012"/>
+		</paper>
+
+	</papers>
+</googlescholar>
