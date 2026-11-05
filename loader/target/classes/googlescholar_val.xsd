@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="googlescholar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="researchers"/>
+        <xs:element ref="papers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="researchers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="researcher"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="researcher">
+	  <xs:complexType>
+	    <xs:sequence>
+	      <xs:element ref="name"/>
+	      <xs:element maxOccurs="unbounded" ref="university"/>
+	      <xs:element maxOccurs="unbounded" ref="interest"/>
+	      <xs:element minOccurs="0" ref="homepage"/>
+	      <xs:element minOccurs="0" ref="email"/>
+	    </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="university" type="xs:string"/>
+  <xs:element name="interest" type="xs:string"/>
+  <xs:element name="homepage">
+	  <xs:simpleType>
+	    <xs:restriction base="xs:string">
+	      <xs:pattern value="https://.*"/>
+	    </xs:restriction>
+	  </xs:simpleType>
+  </xs:element>
+  <xs:element name="email">
+  	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" />
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="papers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="paper"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="paper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <xs:element ref="year"/>
+        <xs:element ref="publisher"/>
+        <xs:element ref="citations"/>
+        <xs:element ref="doi"/>
+        <xs:element maxOccurs="unbounded" ref="author"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="year" type="xs:gYear"/>
+  <xs:element name="publisher" type="xs:string"/>
+  <xs:element name="citations" type="xs:integer"/>
+  <xs:element name="doi" type="xs:string"/>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:attribute name="ref" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
