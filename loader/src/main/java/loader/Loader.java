@@ -1,12 +1,16 @@
 package loader;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.net.URL;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamReader;
+import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+
+import org.xml.sax.SAXException;
 
 import data.Publication;
 import data.Researcher;
@@ -18,19 +22,31 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBException;
 
 public class Loader {
 
     public static void main(String[] args) throws Exception {
-        String path = args.length > 0 ? args[0] : "data/googlescholar_statistics.xml";
+        Loader app = new Loader();
+
+        String path = args.length > 0 ? args[0] : "data/googlescholar.xml";
         File file = new File(path);
         if (!file.exists()) {
             System.err.println("File not found: " + file.getAbsolutePath());
             System.exit(1);
         }
 
-        Googlescholar gs = readGooglescholar(file);
+        try {
+            Validator validator = app.initValidator("/googlescholar.xsd");
+            validator.validate(new StreamSource(file));
+        } catch (SAXException e) {
+            System.err.println("The input XML is not valid: " + e.getMessage());
+            System.err.println("Nothing was loaded.");
+            System.exit(1);
+        }
+        System.out.println("The file " + path + " is valid against googlescholar.xsd.");
+
+        Googlescholar gs = app.unmarshalGooglescholar(file);
         int nResearchers = gs.getResearchers().getResearcher().size();
         int nPapers = gs.getPapers().getPaper().size();
         System.out.println("Read " + nResearchers + " researchers and " + nPapers + " papers from " + path);
@@ -60,10 +76,9 @@ public class Loader {
                 p.setCitations(px.getCitations().intValue());
                 p.setDoi(px.getDoi());
                 for (Author a : px.getAuthor()) {
-                    if (a.getRef() instanceof generated.Researcher author) {
+                    generated.Researcher author = (generated.Researcher) a.getRef();
+                    if (author != null) {
                         p.getAuthors().add(author.getName().trim());
-                    } else {
-                        System.err.println("Warning: unknown author in \"" + px.getTitle() + "\"");
                     }
                 }
                 em.persist(p);
@@ -83,17 +98,19 @@ public class Loader {
         }
     }
 
-    private static Googlescholar readGooglescholar(File file) throws Exception {
-        try (InputStream in = new FileInputStream(file)) {
-            XMLStreamReader reader = XMLInputFactory.newFactory().createXMLStreamReader(in);
-            while (reader.hasNext()) {
-                if (reader.next() == XMLStreamConstants.START_ELEMENT
-                        && reader.getLocalName().equals("googlescholar")) {
-                    Unmarshaller u = JAXBContext.newInstance(Googlescholar.class).createUnmarshaller();
-                    return u.unmarshal(reader, Googlescholar.class).getValue();
-                }
-            }
+    private Validator initValidator(String xsdResource) throws SAXException {
+        URL xsd = Loader.class.getResource(xsdResource);
+        if (xsd == null) {
+            throw new IllegalStateException("Schema " + xsdResource + " not found inside the loader jar");
         }
-        throw new IllegalStateException("No <googlescholar> element found in " + file);
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Source schemaFile = new StreamSource(xsd.toString());
+        Schema schema = factory.newSchema(schemaFile);
+        return schema.newValidator();
+    }
+
+    private Googlescholar unmarshalGooglescholar(File file) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Googlescholar.class);
+        return (Googlescholar) context.createUnmarshaller().unmarshal(file);
     }
 }
