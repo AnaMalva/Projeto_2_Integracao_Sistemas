@@ -8,14 +8,20 @@
         <artifactId>project2</artifactId>
         <version>1</version>
     </parent>
-    <artifactId>jpa</artifactId>
-    <packaging>jar</packaging>
-    <name>jpa</name>
+    <artifactId>rest</artifactId>
+    <packaging>war</packaging>
+    <name>rest</name>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>book</groupId>
+            <artifactId>ejbs</artifactId>
+            <type>ejb</type>
             <scope>provided</scope>
         </dependency>
     </dependencies>
