@@ -12,6 +12,7 @@
     <module>soap</module>
     <module>ear</module>
     <module>rest</module>
+    <module>client</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
