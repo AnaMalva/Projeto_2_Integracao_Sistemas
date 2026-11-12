@@ -1,8 +1,8 @@
-generated\Author.class
-generated\Researcher.class
-generated\ObjectFactory.class
-generated\Paper.class
-loader\Loader.class
-generated\Papers.class
-generated\Googlescholar.class
-generated\Researchers.class
+generated/Researcher.class
+generated/Researchers.class
+generated/Googlescholar.class
+generated/Papers.class
+generated/ObjectFactory.class
+loader/Loader.class
+generated/Paper.class
+generated/Author.class

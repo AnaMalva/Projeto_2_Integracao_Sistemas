@@ -1,2 +1,2 @@
-beans\PublicationBean.class
-beans\ResearcherBean.class
+beans/ResearcherBean.class
+beans/PublicationBean.class
