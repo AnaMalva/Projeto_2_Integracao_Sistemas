@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Table;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -15,7 +17,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderColumn;
 
+
+
 @Entity
+@Table(name="researcher",schema="researchers_db")
 public class Researcher implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,13 +32,13 @@ public class Researcher implements Serializable {
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "researcher_universities", joinColumns = @JoinColumn(name = "researcher_id"))
+    @CollectionTable(name = "researcher_universities", schema="researchers_db", joinColumns = @JoinColumn(name = "researcher_id"))
     @OrderColumn(name = "position")
     @Column(name = "university")
     private List<String> universities = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "researcher_interests", joinColumns = @JoinColumn(name = "researcher_id"))
+    @CollectionTable(name = "researcher_interests", schema="researchers_db",joinColumns = @JoinColumn(name = "researcher_id"))
     @OrderColumn(name = "position")
     @Column(name = "interest")
     private List<String> interests = new ArrayList<>();
