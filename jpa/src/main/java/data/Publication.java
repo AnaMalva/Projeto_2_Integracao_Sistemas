@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Table;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -16,6 +18,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderColumn;
 
 @Entity
+@Table (name="publication", schema="publications_db")
 public class Publication implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +35,7 @@ public class Publication implements Serializable {
     private String doi;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "publication_authors", joinColumns = @JoinColumn(name = "publication_id"))
+    @CollectionTable(name = "publication_authors", schema="publications_db", joinColumns = @JoinColumn(name = "publication_id"))
     @OrderColumn(name = "position")
     @Column(name = "author_name")
     private List<String> authors = new ArrayList<>();
