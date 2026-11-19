@@ -33,6 +33,16 @@ public class PublicationBean {
         }
         return result.get(0);
     }
+    
+    // 2b. Publicações cujo título contém um texto (ignora maiúsculas)
+    public List<Publication> findByTitleContaining(String text) {
+        System.out.println("PublicationBean: findByTitleContaining " + text);
+        return em.createQuery(
+                "SELECT p FROM Publication p "
+              + "WHERE LOWER(p.title) LIKE LOWER(:text) ORDER BY p.year DESC, p.title", Publication.class)
+                .setParameter("text", "%" + text.trim() + "%")
+                .getResultList();
+    }
 
     // 3. Publicações de um investigador
     public List<Publication> findByResearcher(String name) {

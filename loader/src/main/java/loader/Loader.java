@@ -12,6 +12,9 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import data.Publication;
 import data.Researcher;
 import generated.Author;
@@ -25,16 +28,34 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 
 public class Loader {
+	
+    private static final String USAGE =
+            "Usage: java -jar loader/target/loader.jar [file.xml]\n"
+          + "       If no file is given, data/googlescholar.xml is used.";
 
     public static void main(String[] args) throws Exception {
+    	
         Loader app = new Loader();
+        
+        if (args.length == 1 && (args[0].equals("-h") || args[0].equals("--help"))) {
+            System.out.println(USAGE);
+            return;
+        }
+        if (args.length > 1) {
+            System.err.println("Too many arguments.");
+            System.err.println(USAGE);
+            System.exit(1);
+        }
 
         String path = args.length > 0 ? args[0] : "data/googlescholar.xml";
         File file = new File(path);
         if (!file.exists()) {
             System.err.println("File not found: " + file.getAbsolutePath());
+            System.err.println(USAGE);
             System.exit(1);
         }
+        
+
 
         try {
             Validator validator = app.initValidator("/googlescholar_val.xsd");
@@ -50,6 +71,11 @@ public class Loader {
         int nResearchers = gs.getResearchers().getResearcher().size();
         int nPapers = gs.getPapers().getPaper().size();
         System.out.println("Read " + nResearchers + " researchers and " + nPapers + " papers from " + path);
+        
+        if (!app.checkDuplicates(gs)) {
+            System.err.println("The input has duplicates. Nothing was loaded.");
+            System.exit(1);
+        }
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("loaderPU");
         EntityManager em = emf.createEntityManager();
@@ -107,6 +133,38 @@ public class Loader {
         Source schemaFile = new StreamSource(xsd.toString());
         Schema schema = factory.newSchema(schemaFile);
         return schema.newValidator();
+    }
+    
+    // Returns true when no researcher name and no paper title appears twice.
+    // Names and titles are compared ignoring case and surrounding spaces,
+    // the same way the EJBs search for them.
+    private boolean checkDuplicates(Googlescholar gs) {
+        boolean ok = true;
+
+        List<String> names = new ArrayList<String>();
+        for (generated.Researcher rx : gs.getResearchers().getResearcher()) {
+            String key = rx.getName().trim().toLowerCase();
+            if (names.contains(key)) {
+                System.err.println("Duplicate researcher name: \"" + rx.getName().trim()
+                        + "\" (id " + rx.getId() + ")");
+                ok = false;
+            } else {
+                names.add(key);
+            }
+        }
+
+        List<String> titles = new ArrayList<String>();
+        for (Paper px : gs.getPapers().getPaper()) {
+            String key = px.getTitle().trim().toLowerCase();
+            if (titles.contains(key)) {
+                System.err.println("Duplicate paper title: \"" + px.getTitle().trim() + "\"");
+                ok = false;
+            } else {
+                titles.add(key);
+            }
+        }
+
+        return ok;
     }
 
     private Googlescholar unmarshalGooglescholar(File file) throws JAXBException {

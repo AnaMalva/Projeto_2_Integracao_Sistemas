@@ -1,11 +1,11 @@
 package data;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Table;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderColumn;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 
 
@@ -48,7 +49,8 @@ public class Researcher implements Serializable {
 
     public Researcher() {
     }
-
+    
+    @XmlTransient
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

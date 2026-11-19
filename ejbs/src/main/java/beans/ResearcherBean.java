@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import data.Researcher;
 import jakarta.ejb.Stateless;
@@ -23,6 +24,9 @@ public class ResearcherBean {
 
     public Researcher findByName(String name) {
         System.out.println("ResearcherBean: findByName " + name);
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
         TypedQuery<Researcher> q = em.createQuery(
                 "SELECT r FROM Researcher r WHERE LOWER(r.name) = LOWER(:name)", Researcher.class);
         q.setParameter("name", name.trim());
@@ -35,6 +39,9 @@ public class ResearcherBean {
 
     public List<Researcher> findByInterest(String interest) {
         System.out.println("ResearcherBean: findByInterest " + interest);
+        if (interest == null || interest.trim().isEmpty()) {
+            return new ArrayList<Researcher>();
+        }
         TypedQuery<Researcher> q = em.createQuery(
                 "SELECT DISTINCT r FROM Researcher r JOIN r.interests i "
               + "WHERE LOWER(i) = LOWER(:interest) ORDER BY r.name", Researcher.class);
