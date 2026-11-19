@@ -237,3 +237,26 @@ button:hover, .button:hover { background: var(--primary-dark); color: #fff; }
 
 footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 1rem 0 2.5rem; }
 .tile .icon svg { width: 34px; height: 34px; }
+a.pub-title { display: inline; color: var(--text); }
+a.pub-title:hover { color: var(--primary); text-decoration: underline; }
+a.pub-title::after { content: " \2197"; font-size: 0.8em; color: var(--muted); }
+/* ---------- Year range filter (Publications page) ---------- */
+.year-filter {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin: 0 0 1.25rem; font-size: 0.9rem; color: var(--muted);
+}
+.year-filter label { display: flex; align-items: center; gap: 0.4rem; }
+.year-filter input[type=number] {
+  width: 6.5rem; padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line); border-radius: 10px;
+  font-size: 0.95rem; color: var(--text); background: #fff;
+}
+.year-filter input[type=number]:focus { outline: none; border-color: #a5b4fc; box-shadow: 0 0 0 3px rgba(79,70,229,0.12); }
+.year-filter button { padding: 0.45rem 1.1rem; font-size: 0.9rem; background: var(--primary-soft); color: var(--primary-dark); }
+.year-filter button:hover { background: #e0e7ff; color: var(--primary-dark); }
+
+/* ---------- Error page ---------- */
+.error-box { text-align: center; padding: 3rem 1.75rem; }
+.error-box .code { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; }
+.error-box p { max-width: 46ch; margin: 1rem auto 1.75rem; color: var(--muted); }
+.error-box .button { display: inline-block; }

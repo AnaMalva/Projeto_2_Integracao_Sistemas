@@ -44,6 +44,6 @@
         </a>
     </div>
 </main>
-<footer>Enterprise Application Integration · Project 2</footer>
+<footer>Enterprise Application Integration · Project 2 · Ana Malva · Carolina Picado</footer>
 </body>
 </html>
