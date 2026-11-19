@@ -37,7 +37,7 @@ public class Loader {
         }
 
         try {
-            Validator validator = app.initValidator("/googlescholar.xsd");
+            Validator validator = app.initValidator("/googlescholar_val.xsd");
             validator.validate(new StreamSource(file));
         } catch (SAXException e) {
             System.err.println("The input XML is not valid: " + e.getMessage());
