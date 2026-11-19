@@ -53,22 +53,28 @@ public class ResearcherServlet extends HttpServlet {
 
                 // 3. Total citations and citations per year
                 int totalCitations = 0;
-                Map<Integer, Integer> citationsPerYear = new TreeMap<Integer, Integer>();
-
+                Map<Integer, Integer> citationsPerYear = new TreeMap<>();
                 for (Publication p : publications) {
                     totalCitations = totalCitations + p.getCitations();
+                    citationsPerYear.merge(p.getYear(), p.getCitations(), Integer::sum);
+                }
 
-                    Integer current = citationsPerYear.get(p.getYear());
-                    if (current == null) {
-                        current = 0;
+                // 4. Year with most citations (used for the bar sizes and the "Most cited year" box)
+                int bestYear = 0;
+                int maxYearCitations = 0;
+                for (Map.Entry<Integer, Integer> e : citationsPerYear.entrySet()) {
+                    if (e.getValue() > maxYearCitations) {
+                        maxYearCitations = e.getValue();
+                        bestYear = e.getKey();
                     }
-                    citationsPerYear.put(p.getYear(), current + p.getCitations());
                 }
 
                 request.setAttribute("researcher", researcher);
                 request.setAttribute("publications", publications);
                 request.setAttribute("totalCitations", totalCitations);
                 request.setAttribute("citationsPerYear", citationsPerYear);
+                request.setAttribute("bestYear", bestYear);
+                request.setAttribute("maxYearCitations", maxYearCitations);
             }
         }
 

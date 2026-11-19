@@ -2,6 +2,8 @@ package web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import beans.PublicationBean;
 import data.Publication;
@@ -22,7 +24,25 @@ public class TitlesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Publication> publications = publicationBean.findAll();
+
+        List<Publication> all = publicationBean.findAll();
+
+        // Publishers for the filter buttons (TreeSet = sorted, no repeats)
+        Set<String> publishers = new TreeSet<>();
+        for (Publication p : all) {
+            publishers.add(p.getPublisher());
+        }
+
+        // Optional filter: /titles?publisher=IEEE
+        String publisher = request.getParameter("publisher");
+        List<Publication> publications = all;
+        if (publisher != null && !publisher.trim().isEmpty()) {
+            publications = publicationBean.findByVenue(publisher);
+            request.setAttribute("publisher", publisher.trim());
+        }
+
+        request.setAttribute("publishers", publishers);
+        request.setAttribute("totalCount", all.size());
         request.setAttribute("publications", publications);
         request.getRequestDispatcher("/WEB-INF/titles.jsp").forward(request, response);
     }
