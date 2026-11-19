@@ -153,8 +153,15 @@
                         <c:forEach var="p" items="${publications}">
                             <li class="pub">
                                 <div>
-                                    <div class="pub-title"><c:out value="${p.title}"/></div>
-                                    <div class="pub-meta">
+								<c:choose>
+									   <c:when test="${not empty p.doi}">
+									       <a class="pub-title" href="https://doi.org/<c:out value='${p.doi}'/>" target="_blank" rel="noopener"><c:out value="${p.title}"/></a>
+									   </c:when>
+									   <c:otherwise>
+									       <div class="pub-title"><c:out value="${p.title}"/></div>
+									   </c:otherwise>
+								   </c:choose>                  
+		                           <div class="pub-meta">
                                         <c:url var="pubLink" value="/titles"><c:param name="publisher" value="${p.publisher}"/></c:url>
                                         <a class="badge pub-${p.publisher}" href="${pubLink}"><c:out value="${p.publisher}"/></a>
                                         <span>${p.year}</span>
@@ -213,6 +220,6 @@
         </div>
     </c:if>
 </main>
-<footer>Enterprise Application Integration · Project 2</footer>
+<footer>Enterprise Application Integration · Project 2 · Ana Malva · Carolina Picado</footer>
 </body>
 </html>
