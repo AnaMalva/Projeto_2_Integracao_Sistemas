@@ -65,7 +65,7 @@ public class Loader {
             System.err.println("Nothing was loaded.");
             System.exit(1);
         }
-        System.out.println("The file " + path + " is valid against googlescholar.xsd.");
+        System.out.println("The file " + path + " is valid against googlescholar_val.xsd.");
 
         Googlescholar gs = app.unmarshalGooglescholar(file);
         int nResearchers = gs.getResearchers().getResearcher().size();
