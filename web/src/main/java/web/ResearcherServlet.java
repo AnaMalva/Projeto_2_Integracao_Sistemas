@@ -1,9 +1,11 @@
 package web;
 
 import java.io.IOException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.time.Year;
 
 import beans.PublicationBean;
 import beans.ResearcherBean;
@@ -51,23 +53,48 @@ public class ResearcherServlet extends HttpServlet {
                 // 2. Papers from the Publications "database", joined by name
                 List<Publication> publications = publicationBean.findByResearcher(researcher.getName());
 
-                // 3. Total citations and citations per year
+                // 3. Total citations and citations per year of publication
                 int totalCitations = 0;
-                Map<Integer, Integer> citationsPerYear = new TreeMap<>();
+                Map<Integer, Integer> citationsPerYear = new TreeMap<Integer, Integer>();
                 for (Publication p : publications) {
                     totalCitations = totalCitations + p.getCitations();
-                    citationsPerYear.merge(p.getYear(), p.getCitations(), Integer::sum);
+
+                    Integer current = citationsPerYear.get(p.getYear());
+                    if (current == null) {
+                        current = 0;
+                    }
+                    citationsPerYear.put(p.getYear(), current + p.getCitations());
                 }
 
-                // 4. Year with most citations (used for the bar sizes and the "Most cited year" box)
+                // 4. Most cited year, adjusted for age.
+                //    A paper from 2007 has had 20 years to collect citations, one from 2020 only 7,
+                //    so each year's citations are divided by the number of years since then
+                //    (that year included). The year with the highest rate wins.
+                int currentYear = Year.now().getValue();
                 int bestYear = 0;
-                int maxYearCitations = 0;
+                double bestRate = 0;
+                int maxYearCitations = 0;   // largest total, only used for the bar sizes
+
                 for (Map.Entry<Integer, Integer> e : citationsPerYear.entrySet()) {
-                    if (e.getValue() > maxYearCitations) {
-                        maxYearCitations = e.getValue();
-                        bestYear = e.getKey();
+                    int year = e.getKey();
+                    int citations = e.getValue();
+
+                    if (citations > maxYearCitations) {
+                        maxYearCitations = citations;
+                    }
+
+                    int yearsSince = currentYear - year + 1;
+                    if (yearsSince < 1) {
+                        yearsSince = 1;     // protects against a year in the future
+                    }
+                    double rate = (double) citations / yearsSince;
+
+                    if (rate > bestRate) {
+                        bestRate = rate;
+                        bestYear = year;
                     }
                 }
+                double bestYearRate = Math.round(bestRate * 10) / 10.0;   // one decimal place
 
                 request.setAttribute("researcher", researcher);
                 request.setAttribute("publications", publications);
@@ -75,6 +102,7 @@ public class ResearcherServlet extends HttpServlet {
                 request.setAttribute("citationsPerYear", citationsPerYear);
                 request.setAttribute("bestYear", bestYear);
                 request.setAttribute("maxYearCitations", maxYearCitations);
+                request.setAttribute("bestYearRate", bestYearRate);
             }
         }
 

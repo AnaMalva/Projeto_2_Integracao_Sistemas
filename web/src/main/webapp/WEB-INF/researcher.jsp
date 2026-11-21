@@ -126,8 +126,9 @@
                     <div class="stat"><span class="value">${totalCitations}</span><span class="label">Total citations</span></div>
                     <div class="stat">
                         <c:choose>
-                            <c:when test="${maxYearCitations > 0}">
-                                <span class="value">${bestYear}</span><span class="label">Most cited year (${maxYearCitations})</span>
+                            <c:when test="${bestYear > 0}">
+                                <span class="value">${bestYear}</span>
+                                <span class="label">Most cited year (${bestYearRate} citations/year)</span>
                             </c:when>
                             <c:otherwise>
                                 <span class="value">&ndash;</span><span class="label">Most cited year</span>
