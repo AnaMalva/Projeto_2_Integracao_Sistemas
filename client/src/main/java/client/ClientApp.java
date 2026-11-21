@@ -122,7 +122,7 @@ public class ClientApp {
         Response response = rest.target(REST_URL).path("title")
                 .queryParam("title", title).request().get();
         try {
-            if (response.getStatus() == 200) {
+            if (response.getStatus() != 200) {
                 return null;
             }
             return response.readEntity(Publication.class);
