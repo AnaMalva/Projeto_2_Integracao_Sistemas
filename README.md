@@ -129,6 +129,7 @@ curl "http://localhost:8080/rest/api/publications/venue-researcher?venue=IEEE&re
 
 ```bash
 java -jar client/target/client.jar
+To use a server on another machine: `java -jar client/target/client.jar http://otherpc:8080`
 ```
 
 | Option | Operation | Uses |
@@ -183,7 +184,7 @@ counts from `data/googlescholar.xml`:
 ./test-services.sh
 ```
 
-Expected: `18 passed, 0 failed`.
+Expected: `25 passed, 0 failed`.
 
 Some values to check by hand:
 
