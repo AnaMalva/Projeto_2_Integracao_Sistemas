@@ -221,11 +221,16 @@ public class ClientApp {
 
     // 9. Soma as citacoes das publicacoes do investigador, agrupadas por ano de publicacao
     private void citationsPerYear(String name) {
+        if (name.isEmpty()) {
+            System.out.println("Escreva o nome de um investigador.");
+            return;
+        }
         List<Publication> pubs = restByResearcher(name);
         if (pubs.isEmpty()) {
             System.out.println("Nao ha publicacoes de " + name + ".");
             return;
         }
+
         Map<Integer, Integer> perYear = new TreeMap<Integer, Integer>();   // TreeMap = ordenado por ano
         for (Publication p : pubs) {
             Integer current = perYear.get(p.getYear());
@@ -246,6 +251,10 @@ public class ClientApp {
     // 10. Investigadores da instituicao (SOAP) -> publicacoes de cada um (REST) -> filtra pelo periodo
     private void institutionInPeriod() {
         String institution = ask("Instituicao (ex: Coimbra)");
+        while (institution.isEmpty()) {
+            System.out.println("Escreva o nome (ou parte do nome) de uma instituicao.");
+            institution = ask("Instituicao (ex: Coimbra)");
+        }
         int from = askYear("Desde o ano");
         int to = askYear("Ate ao ano");
         while (to < from) {
