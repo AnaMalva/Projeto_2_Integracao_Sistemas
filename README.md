@@ -183,7 +183,7 @@ counts from `data/googlescholar.xml`:
 ./test-services.sh
 ```
 
-Expected: `18 passed, 0 failed`.
+Expected: `25 passed, 0 failed`.
 
 Some values to check by hand:
 
