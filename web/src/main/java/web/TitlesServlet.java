@@ -28,8 +28,6 @@ public class TitlesServlet extends HttpServlet {
 
         List<Publication> all = publicationBean.findAll();
 
-        // Publishers for the filter buttons (TreeSet = sorted, no repeats)
-        // + the oldest and newest year, to help fill the year boxes
         Set<String> publishers = new TreeSet<>();
         int minYear = Integer.MAX_VALUE;
         int maxYear = Integer.MIN_VALUE;
@@ -39,7 +37,6 @@ public class TitlesServlet extends HttpServlet {
             maxYear = Math.max(maxYear, p.getYear());
         }
 
-        // Filter 1 (optional): /titles?publisher=IEEE
         String publisher = request.getParameter("publisher");
         List<Publication> publications = all;
         if (publisher != null && !publisher.trim().isEmpty()) {
@@ -47,7 +44,6 @@ public class TitlesServlet extends HttpServlet {
             request.setAttribute("publisher", publisher.trim());
         }
 
-        // Filter 2 (optional): /titles?from=2015&to=2021  (works together with filter 1)
         Integer from = readYear(request, "from");
         Integer to = readYear(request, "to");
         if (from != null && to != null && from > to) {
@@ -76,7 +72,6 @@ public class TitlesServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/titles.jsp").forward(request, response);
     }
 
-    // Reads a year from the address (?from=2015). Empty -> null. Not a number -> null + message.
     private Integer readYear(HttpServletRequest request, String name) {
         String value = request.getParameter(name);
         if (value == null || value.trim().isEmpty()) {

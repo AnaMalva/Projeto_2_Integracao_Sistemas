@@ -1,5 +1,4 @@
-#!/bin/bash
-# Tests parts b) SOAP and c) REST against data/googlescholar.xml
+
 SOAP=http://localhost:8080/soap/ResearchersWS
 REST=http://localhost:8080/rest/api/publications
 PASS=0

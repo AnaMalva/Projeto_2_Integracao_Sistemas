@@ -13,7 +13,6 @@ public class PublicationBean {
     @PersistenceContext(unitName = "project2PU")
     private EntityManager em;
 
-    // 1. Todas as publicações
     public List<Publication> findAll() {
         System.out.println("PublicationBean: findAll");
         return em.createQuery(
@@ -21,7 +20,6 @@ public class PublicationBean {
                 .getResultList();
     }
 
-    // 2. Uma publicação, dado o título
     public Publication findByTitle(String title) {
         System.out.println("PublicationBean: findByTitle " + title);
         List<Publication> result = em.createQuery(
@@ -34,7 +32,6 @@ public class PublicationBean {
         return result.get(0);
     }
     
-    // 2b. Publicações cujo título contém um texto (ignora maiúsculas)
     public List<Publication> findByTitleContaining(String text) {
         System.out.println("PublicationBean: findByTitleContaining " + text);
         return em.createQuery(
@@ -44,7 +41,6 @@ public class PublicationBean {
                 .getResultList();
     }
 
-    // 3. Publicações de um investigador
     public List<Publication> findByResearcher(String name) {
         System.out.println("PublicationBean: findByResearcher " + name);
         return em.createQuery(
@@ -54,7 +50,6 @@ public class PublicationBean {
                 .getResultList();
     }
 
-    // 4. Publicações de uma revista/conferência
     public List<Publication> findByVenue(String venue) {
         System.out.println("PublicationBean: findByVenue " + venue);
         return em.createQuery(
@@ -64,7 +59,6 @@ public class PublicationBean {
                 .getResultList();
     }
 
-    // 5. Publicações de uma revista/conferência e de um investigador
     public List<Publication> findByVenueAndResearcher(String venue, String name) {
         System.out.println("PublicationBean: findByVenueAndResearcher " + venue + " / " + name);
         return em.createQuery(

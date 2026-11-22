@@ -13,7 +13,6 @@
     <name>client</name>
 
     <dependencies>
-        <!-- SOAP (capitulo 4) -->
         <dependency>
             <groupId>jakarta.xml.ws</groupId>
             <artifactId>jakarta.xml.ws-api</artifactId>
@@ -25,7 +24,6 @@
             <version>4.0.2</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- REST (capitulo 5) -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>

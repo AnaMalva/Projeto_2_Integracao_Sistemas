@@ -135,9 +135,6 @@ public class Loader {
         return schema.newValidator();
     }
     
-    // Returns true when no researcher name and no paper title appears twice.
-    // Names and titles are compared ignoring case and surrounding spaces,
-    // the same way the EJBs search for them.
     private boolean checkDuplicates(Googlescholar gs) {
         boolean ok = true;
 

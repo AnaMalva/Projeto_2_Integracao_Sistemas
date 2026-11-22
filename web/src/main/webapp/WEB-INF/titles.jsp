@@ -26,7 +26,6 @@
 
 <main>
     <div class="card">
-        <%-- Publisher buttons (they keep the chosen years) + how many are shown --%>
         <div class="section-head">
             <div class="filters">
                 <c:url var="allLink" value="/titles">
@@ -46,7 +45,6 @@
             <span class="count">${publications.size()} publications</span>
         </div>
 
-        <%-- Year range (keeps the chosen publisher) --%>
         <form class="year-filter" action="<c:url value='/titles'/>" method="get">
             <c:if test="${not empty publisher}">
                 <input type="hidden" name="publisher" value="<c:out value='${publisher}'/>">

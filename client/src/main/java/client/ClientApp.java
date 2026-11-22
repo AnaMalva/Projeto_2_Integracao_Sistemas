@@ -25,28 +25,25 @@ import soap.ResearchersWSService;
 
 public class ClientApp {
 
-    // Server used when no address is given: java -jar client.jar
     private static final String DEFAULT_SERVER = "http://localhost:8080";
 
-    private final String restUrl;       // e.g. http://localhost:8080/rest/api/publications
-    private final ResearchersWS soap;   // SOAP (investigadores)
-    private final Client rest;          // REST (publicacoes)
+    private final String restUrl;       
+    private final ResearchersWS soap;   
+    private final Client rest;          
     private final Scanner in = new Scanner(System.in);
 
     public ClientApp(String server) throws MalformedURLException {
-        // SOAP: read the WSDL from the given server and send the requests there too
+
         URL wsdl = URI.create(server + "/soap/ResearchersWS?wsdl").toURL();
         soap = new ResearchersWSService(wsdl).getResearchersWSPort();
         ((BindingProvider) soap).getRequestContext()
                 .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, server + "/soap/ResearchersWS");
 
-        // REST
+
         restUrl = server + "/rest/api/publications";
         rest = ClientBuilder.newClient();
     }
 
-    // Usage: java -jar client.jar                       (uses http://localhost:8080)
-    //        java -jar client.jar http://otherpc:8080   (uses another server)
     public static void main(String[] args) {
         String server = DEFAULT_SERVER;
         if (args.length > 0) {
@@ -67,7 +64,6 @@ public class ClientApp {
         }
     }
 
-    // ---------------- Menu ----------------
 
     public void run() {
         while (true) {
@@ -141,7 +137,6 @@ public class ClientApp {
                         System.out.println("Opcao invalida.");
                 }
             } catch (NoSuchElementException e) {
-                // End of input (Ctrl+D on Linux/Mac, Ctrl+Z + Enter on Windows): leave cleanly
                 System.out.println();
                 close();
                 return;
@@ -161,7 +156,6 @@ public class ClientApp {
         return in.nextLine().trim();
     }
 
-    // Asks until a valid year (a whole number) is written
     private int askYear(String label) {
         while (true) {
             String text = ask(label);
@@ -173,7 +167,6 @@ public class ClientApp {
         }
     }
 
-    // ---------------- Chamadas ao REST ----------------
 
     private List<Publication> getList(WebTarget target) {
         Response response = target.request().get();
@@ -217,9 +210,6 @@ public class ClientApp {
                 .queryParam("venue", venue).queryParam("researcher", name));
     }
 
-    // ---------------- Operacoes extra ----------------
-
-    // 9. Soma as citacoes das publicacoes do investigador, agrupadas por ano de publicacao
     private void citationsPerYear(String name) {
         if (name.isEmpty()) {
             System.out.println("Escreva o nome de um investigador.");
@@ -231,7 +221,7 @@ public class ClientApp {
             return;
         }
 
-        Map<Integer, Integer> perYear = new TreeMap<Integer, Integer>();   // TreeMap = ordenado por ano
+        Map<Integer, Integer> perYear = new TreeMap<Integer, Integer>();   
         for (Publication p : pubs) {
             Integer current = perYear.get(p.getYear());
             if (current == null) {
@@ -248,7 +238,6 @@ public class ClientApp {
         System.out.println("  Total: " + total);
     }
 
-    // 10. Investigadores da instituicao (SOAP) -> publicacoes de cada um (REST) -> filtra pelo periodo
     private void institutionInPeriod() {
         String institution = ask("Instituicao (ex: Coimbra)");
         while (institution.isEmpty()) {
@@ -262,7 +251,7 @@ public class ClientApp {
             to = askYear("Ate ao ano");
         }
 
-        Map<String, Publication> result = new LinkedHashMap<String, Publication>();   // pelo titulo, para nao repetir
+        Map<String, Publication> result = new LinkedHashMap<String, Publication>();   
         for (Researcher r : soap.getAllResearchers()) {
             boolean belongs = false;
             for (String u : r.getUniversities()) {
@@ -290,8 +279,6 @@ public class ClientApp {
         System.out.println("Publicacoes de \"" + institution + "\" entre " + from + " e " + to + ":");
         printPublications(list);
     }
-
-    // ---------------- Mostrar resultados ----------------
 
     private void printResearchers(List<Researcher> list) {
         if (list.isEmpty()) {

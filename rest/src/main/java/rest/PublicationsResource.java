@@ -23,13 +23,11 @@ public class PublicationsResource {
     @EJB
     private PublicationBean publicationBean;
 
-    // 1. GET /publications
     @GET
     public List<Publication> getAll() {
         return publicationBean.findAll();
     }
 
-    // 2. GET /publications/title?title=...   (exact title, ignoring case)
     @GET
     @Path("/title")
     public Response getByTitle(@QueryParam("title") @DefaultValue("") String title) {
@@ -43,7 +41,6 @@ public class PublicationsResource {
         return Response.ok(p).build();
     }
 
-    // 2b. GET /publications/search?title=...   (part of the title)
     @GET
     @Path("/search")
     public Response searchByTitle(@QueryParam("title") @DefaultValue("") String text) {
@@ -53,7 +50,6 @@ public class PublicationsResource {
         return okList(publicationBean.findByTitleContaining(text));
     }
 
-    // 3. GET /publications/researcher?name=...
     @GET
     @Path("/researcher")
     public Response getByResearcher(@QueryParam("name") @DefaultValue("") String name) {
@@ -63,7 +59,6 @@ public class PublicationsResource {
         return okList(publicationBean.findByResearcher(name));
     }
 
-    // 4. GET /publications/venue?name=...
     @GET
     @Path("/venue")
     public Response getByVenue(@QueryParam("name") @DefaultValue("") String venue) {
@@ -73,7 +68,6 @@ public class PublicationsResource {
         return okList(publicationBean.findByVenue(venue));
     }
 
-    // 5. GET /publications/venue-researcher?venue=...&researcher=...
     @GET
     @Path("/venue-researcher")
     public Response getByVenueAndResearcher(
@@ -85,13 +79,11 @@ public class PublicationsResource {
         return okList(publicationBean.findByVenueAndResearcher(venue, researcher));
     }
 
-    // ---------- helpers ----------
 
     private boolean isBlank(String value) {
         return value == null || value.trim().isEmpty();
     }
 
-    // 400 Bad Request with a short explanation in plain text
     private Response badRequest(String message) {
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(message)
@@ -99,7 +91,6 @@ public class PublicationsResource {
                 .build();
     }
 
-    // 200 OK with a list of publications as JSON
     private Response okList(List<Publication> list) {
         GenericEntity<List<Publication>> entity = new GenericEntity<List<Publication>>(list) {};
         return Response.ok(entity).build();

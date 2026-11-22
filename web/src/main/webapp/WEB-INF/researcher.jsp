@@ -34,7 +34,6 @@
 </header>
 
 <main>
-    <%-- Search box (always visible) --%>
     <div class="card">
         <form class="search" action="<c:url value='/researcher'/>" method="get">
             <input type="text" name="name" list="names" placeholder="Search a researcher by name…"
@@ -48,7 +47,6 @@
         </form>
     </div>
 
-    <%-- A) Researchers that share an interest --%>
     <c:if test="${not empty interest}">
         <div class="card">
             <div class="section-head">
@@ -77,7 +75,6 @@
         </div>
     </c:if>
 
-    <%-- B) Name searched but not found --%>
     <c:if test="${not empty searched and empty researcher}">
         <div class="card">
             <p class="error">No researcher named "<c:out value="${searched}"/>".</p>
@@ -199,7 +196,6 @@
         </c:if>
     </c:if>
 
-    <%-- D) Nothing chosen yet: list everyone --%>
     <c:if test="${empty searched and empty interest}">
         <div class="card">
             <div class="section-head">

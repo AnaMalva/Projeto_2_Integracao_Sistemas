@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isErrorPage="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%-- Shown by the server (see web.xml) when something goes wrong. No technical details are shown to the user. --%>
 <c:set var="code" value="${pageContext.errorData.statusCode}"/>
 <!DOCTYPE html>
 <html>
